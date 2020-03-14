@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Modal } from 'react-native';
 
 const GoalInput = props => {
     const [enteredGoal, setEnteredGoal] = useState('');
@@ -8,29 +8,60 @@ const GoalInput = props => {
         setEnteredGoal(enteredText);
     };
 
+    const addGoalHandler = () => {
+        props.onAddGoal(enteredGoal);
+        setEnteredGoal('');
+    };
+
+    const cancelGoalHandler = () => {
+        props.onCancel();
+        setEnteredGoal('');
+    };
+
     return (
-        <View style={styles.inputContainer}>
-            <TextInput
-                onChangeText={goalInputHandler}
-                placeholder="Course Goal"
-                style={styles.input}
-                value={enteredGoal} />
-            <Button
-                onPress={props.onAddGoal.bind(this, enteredGoal)}
-                title="ADD" />
-        </View>
+        <Modal visible={props.visible} animationType="slide">
+            <View style={styles.inputContainer}>
+                <TextInput
+                    onChangeText={goalInputHandler}
+                    placeholder="Course Goal"
+                    style={styles.input}
+                    value={enteredGoal} />
+                <View style={styles.buttonContainer}>
+                    <View style={styles.button}>
+                        <Button
+                            color="red"
+                            onPress={cancelGoalHandler}
+                            title="CANCEL" />
+                    </View>
+                    <View style={styles.button}>
+                        <Button
+                            onPress={addGoalHandler}
+                            title="ADD" />
+                    </View>
+                </View>
+            </View>
+        </Modal>
     );
 };
 
 const styles = StyleSheet.create({
-    inputContainer: {
+    button: {
+        width: '40%'
+    },
+    buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        width: '60%'
+    },
+    inputContainer: {
+        alignItems: 'center',
+        flex: 1,
+        justifyContent: 'center'
     },
     input: {
         borderBottomColor: 'black',
         borderBottomWidth: 1,
+        marginBottom: 10,
         padding: 10,
         width: '80%'
     }

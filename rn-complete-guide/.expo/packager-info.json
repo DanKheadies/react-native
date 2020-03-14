@@ -3,7 +3,7 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerNgrokUrl": "https://d7-qi7.anonymous.rn-complete-guide.exp.direct",
+  "packagerNgrokUrl": "https://packager.d7-qi7.anonymous.rn-complete-guide.exp.direct",
+  "ngrokPid": 18730
 }

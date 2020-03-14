@@ -3,5 +3,6 @@
   "lanType": "ip",
   "dev": true,
   "minify": false,
-  "urlRandomness": "d7-qi7"
+  "urlRandomness": "d7-qi7",
+  "https": false
 }
