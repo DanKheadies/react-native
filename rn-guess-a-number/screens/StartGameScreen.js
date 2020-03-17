@@ -9,10 +9,13 @@ import {
     Alert
 } from 'react-native';
 
+import BodyText from '../components/BodyText';
 import Card from '../components/Card';
 import Colors from '../constants/colors';
 import Input from '../components/Input';
-import NumberContainer from './../components/NumberContainer';
+import MainButton from '../components/MainButton';
+import NumberContainer from '../components/NumberContainer';
+import TitleText from '../components/TitleText';
 
 const StartGameScreen = props => {
     const [enteredValue, setEnteredValue] = useState('');
@@ -37,6 +40,7 @@ const StartGameScreen = props => {
         setConfirmed(true);
         setSelectedNumber(chosenNumber);
         setEnteredValue('');
+        Keyboard.dismiss();
     };
 
     let confirmedOutput;
@@ -44,9 +48,11 @@ const StartGameScreen = props => {
     if (confirmed) {
         confirmedOutput = (
             <Card style={styles.summaryContainer}>
-                <Text>You selected</Text>
+                <BodyText>You selected</BodyText>
                 <NumberContainer>{selectedNumber}</NumberContainer>
-                <Button title="START GAME" onPress={() => props.onStartGame(selectedNumber)} />
+                <MainButton onPress={() => props.onStartGame(selectedNumber)}>
+                    START GAME
+                </MainButton>
             </Card>
         );
     }
@@ -56,9 +62,9 @@ const StartGameScreen = props => {
             Keyboard.dismiss();
         }}>
             <View style={styles.screen}>
-                <Text style={styles.title}>Start a New Game...</Text>
+                <TitleText style={styles.title}>Start a New Game...</TitleText>
                 <Card style={styles.inputContainer}>
-                    <Text>Select a Number</Text>
+                    <BodyText>Select a Number</BodyText>
                     <Input 
                         autoCapitalize="none" 
                         autoCorrect={false} 
@@ -124,7 +130,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-        marginVertical: 10
+        marginVertical: 20
     }
 });
 
