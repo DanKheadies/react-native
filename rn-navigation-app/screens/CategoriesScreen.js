@@ -1,11 +1,7 @@
 import React from 'react';
 import { 
-    View, 
-    Text, 
-    Button, 
     FlatList, 
-    StyleSheet,
-    TouchableOpacity
+    StyleSheet
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
