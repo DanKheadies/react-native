@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     },
     price: {
         color: '#999',
-        // fontFamily: 'open-sans',
+        fontFamily: 'open-sans',
         fontSize: 14
     },
     product: {
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 18,
-        // fontFamily: 'open-sans-bold',
+        fontFamily: 'open-sans-bold',
         height: 24
     },
     touchable: {
