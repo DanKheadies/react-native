@@ -3,6 +3,7 @@ import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import * as cartActions from '../../store/actions/cart';
+import * as ordersActions from '../../store/actions/orders';
 import CartItem from '../../components/shop/CartItem';
 import Colors from '../../constants/Colors';
 
@@ -34,8 +35,11 @@ const CartScreen = props => {
                 </Text>
                 <Button 
                     color={Colors.accent}
-                    title='Order Now'
                     disabled={cartItems.length === 0}
+                    onPress={() => {
+                        dispatch(ordersActions.addOrder(cartItems, cartTotalAmount));
+                    }}
+                    title='Order Now'
                 />
             </View>
             <FlatList 
@@ -44,6 +48,7 @@ const CartScreen = props => {
                 renderItem={itemData => (
                     <CartItem
                         amount={itemData.item.sum} 
+                        deletable
                         onRemove={() => {
                             dispatch(cartActions.removeFromCart(itemData.item.productId));
                         }}
@@ -54,6 +59,10 @@ const CartScreen = props => {
             />
         </View>
     );
+};
+
+CartScreen.navigationOptions = {
+    headerTitle: 'Your Cart'
 };
 
 const styles = StyleSheet.create({
