@@ -1,6 +1,5 @@
 import React from 'react';
 import { 
-    Button, 
     Image, 
     Platform,
     StyleSheet, 
@@ -10,7 +9,7 @@ import {
     View
 } from 'react-native';
 
-import Colors from '../../constants/Colors';
+import Card from '../UI/Card';
 
 const ProductItem = props => {
     let TouchableCmp = TouchableOpacity;
@@ -20,9 +19,9 @@ const ProductItem = props => {
     }
 
     return (
-        <View style={styles.product}>
+        <Card style={styles.product}>
             <View style={styles.touchable}>
-                <TouchableCmp onPress={props.onViewDetail} useForeground>
+                <TouchableCmp onPress={props.onSelect} useForeground>
                     <View>
                         <View style={styles.imageContainer}>
                             <Image style={styles.image} source={{uri: props.image}} />
@@ -32,21 +31,12 @@ const ProductItem = props => {
                             <Text style={styles.price}>${props.price.toFixed(2)}</Text>
                         </View>
                         <View style={styles.actions}>
-                            <Button 
-                                color={Colors.primary} 
-                                onPress={props.onViewDetail} 
-                                title="View Details" 
-                            />
-                            <Button 
-                                color={Colors.primary} 
-                                onPress={props.onAddToCart} 
-                                title="To Cart" 
-                            />
+                            {props.children}
                         </View>
                     </View>
                 </TouchableCmp>
             </View>
-        </View>
+        </Card>
     );
 };
 
@@ -80,21 +70,12 @@ const styles = StyleSheet.create({
         fontSize: 14
     },
     product: {
-        backgroundColor: 'white',
-        borderRadius: 10,
-        elevation: 5,
         height: 300,
-        margin: 20,
-        overflow: 'hidden',
-        shadowColor: 'black',
-        shadowOffset: {width: 0, height: 2},
-        shadowOpacity: 0.26,
-        shadowRadius: 8
+        margin: 20
     },
     title: {
         fontSize: 18,
-        fontFamily: 'open-sans-bold',
-        height: 24
+        fontFamily: 'open-sans-bold'
     },
     touchable: {
         borderRadius: 10,

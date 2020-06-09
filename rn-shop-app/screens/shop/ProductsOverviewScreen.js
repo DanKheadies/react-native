@@ -1,15 +1,23 @@
 import React from 'react';
-import { FlatList, Platform, StyleSheet } from 'react-native';
+import { Button, FlatList, Platform } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import * as cartActions from '../../store/actions/cart';
+import Colors from '../../constants/Colors';
 import HeaderButton from '../../components/UI/HeaderButton';
 import ProductItem from '../../components/shop/ProductItem';
 
 const ProductsOverviewScreen = props => {
     const products = useSelector(state => state.products.availableProducts);
     const dispatch = useDispatch();
+
+    const selectItemHandler = (id, title) => {
+        props.navigation.navigate('ProductDetail', {
+            productId: id,
+            productTitle: title
+        });
+    };
 
     return (
         <FlatList
@@ -20,16 +28,25 @@ const ProductsOverviewScreen = props => {
                     image={itemData.item.imageUrl}
                     price={itemData.item.price}
                     title={itemData.item.title}
-                    onAddToCart={() => {
-                        dispatch(cartActions.addToCart(itemData.item));
+                    onSelect={() => {
+                        selectItemHandler(itemData.item.id, itemData.item.title);
                     }}
-                    onViewDetail={() => {
-                        props.navigation.navigate('ProductDetail', {
-                            productId: itemData.item.id,
-                            productTitle: itemData.item.title
-                        });
-                    }}
-                />
+                >
+                    <Button 
+                        color={Colors.primary} 
+                        onPress={() => {
+                            selectItemHandler(itemData.item.id, itemData.item.title);
+                        }} 
+                        title="View Details" 
+                    />
+                    <Button 
+                        color={Colors.primary} 
+                        onPress={() => {
+                            dispatch(cartActions.addToCart(itemData.item));
+                        }} 
+                        title="To Cart" 
+                    />
+                </ProductItem>
             }
         >    
         </FlatList>
@@ -59,7 +76,5 @@ ProductsOverviewScreen.navigationOptions = navData => {
         </HeaderButtons>
     };
 };
-
-const styles = StyleSheet.create({});
 
 export default ProductsOverviewScreen;
