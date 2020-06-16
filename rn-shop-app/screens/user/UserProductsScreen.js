@@ -1,5 +1,5 @@
-import React from 'react';
-import { Alert, Button, FlatList, Platform } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { ActivityIndicator, Alert, Button, FlatList, Platform, StyleSheet, View } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -9,8 +9,32 @@ import HeaderButton from '../../components/UI/HeaderButton';
 import ProductItem from '../../components/shop/ProductItem';
 
 const UserProductsScreen = props => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState();
+
     const userProducts = useSelector(state => state.products.userProducts);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (error) {
+            Alert.alert('An error occurred!', error, [{
+                text: 'Okay'
+            }]);
+        }
+    }, [error]);
+
+    const onPressDeleteHandler = useCallback(async (id) => {
+        setError(null);
+        setIsLoading(true);
+
+        try {
+            await dispatch(productsActions.deleteProduct(id));
+        } catch (err) {
+            setError(err.message);
+        }
+
+        setIsLoading(false);
+    }, [dispatch]);
 
     const deleteHandler = (id) => {
         Alert.alert('Are you sure?', 'Do you really want to delete this item?', [
@@ -22,7 +46,7 @@ const UserProductsScreen = props => {
                 text: 'Yes',
                 style: 'destructive',
                 onPress: () => {
-                    dispatch(productsActions.deleteProduct(id));
+                    onPressDeleteHandler(id)
                 }
             }
         ]);
@@ -33,6 +57,17 @@ const UserProductsScreen = props => {
             productId: id
         });
     };
+
+    if (isLoading) {
+        return (
+            <View style={styles.centered}>
+                <ActivityIndicator
+                    color={Colors.primary}
+                    size='large'
+                />
+            </View>
+        );
+    }
 
     return (
         <FlatList 
@@ -91,5 +126,13 @@ UserProductsScreen.navigationOptions = navData => {
         </HeaderButtons>
     };
 };
+
+const styles = StyleSheet.create({
+    centered: {
+        alignItems: 'center',
+        flex: 1,
+        justifyContent: 'center'
+    }
+});
 
 export default UserProductsScreen;
