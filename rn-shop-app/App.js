@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import ReduxThunk from 'redux-thunk';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
-import ReduxThunk from 'redux-thunk';
 
+import authReducer from './store/reducers/auth';
 import cartReducer from './store/reducers/cart';
 import ordersReducer from './store/reducers/orders';
+import NavigationContainer from './navigation/NavigationContainer';
 import productsReducer from './store/reducers/products';
-import ShopNavigator from './navigation/ShopNavigator';
 
 const rootReducer = combineReducers({
+  auth: authReducer,
   cart: cartReducer,
   orders: ordersReducer,
   products: productsReducer
@@ -40,7 +42,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <ShopNavigator />
+      <NavigationContainer />
     </Provider>
   );
 }

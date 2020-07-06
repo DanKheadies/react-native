@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, Alert, Button, FlatList, Platform, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Alert, Button, FlatList, Platform, StyleSheet, Text, View } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -51,6 +51,19 @@ const UserProductsScreen = props => {
             }
         ]);
     };
+
+    if (userProducts.length === 0) {
+        return (
+            <View style={{
+                alignItems: 'center',
+                flex: 1,
+                justifyContent: 'center'
+            }}>
+                <Text>No products found.</Text>
+                <Text>Maybe start creating some!</Text>
+            </View>
+        );
+    }
 
     const editProductHandler = (id) => {
         props.navigation.navigate('EditProduct', {

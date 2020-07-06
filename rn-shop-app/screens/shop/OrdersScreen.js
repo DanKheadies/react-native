@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Alert, FlatList, Platform, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Alert, FlatList, Platform, StyleSheet, Text, View } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -39,6 +39,19 @@ const OrdersScreen = props => {
                     color={Colors.primary}
                     size='large'
                 />
+            </View>
+        );
+    }
+
+    if (orders.length === 0) {
+        return (
+            <View style={{
+                alignItems: 'center',
+                flex: 1,
+                justifyContent: 'center'
+            }}>
+                <Text>No orders found.</Text>
+                <Text>Maybe start ordering some products.</Text>
             </View>
         );
     }

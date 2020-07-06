@@ -26,7 +26,7 @@ const ProductsOverviewScreen = props => {
             setError(err.message);
         }
         setIsRefreshing(false);
-    }, [dispatch, setIsLoading, setError]);
+    }, [dispatch, setIsRefreshing, setError]);
 
     useEffect(() => {
         const willFocusSub = props.navigation.addListener(
