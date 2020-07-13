@@ -21,16 +21,23 @@ export const authenticate = (userId, token, expiryTime) => {
 export const signup = (email, password) => {
     return async dispatch => {
         const response = await fetch(
+            // For sign up
             'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCMe3DlaGrvByeqL_avOHQW-zZwbnzk-NQ'
+            // For email verification
+            // 'https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCMe3DlaGrvByeqL_avOHQW-zZwbnzk-NQ'
         ,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+                // For sign up
                 email: email,
                 password: password,
                 returnSecureToken: true
+                // For email verification
+                // requestType: 'VERIFY_EMAIL',
+                // idToken: 'derp'
             })
         });
 

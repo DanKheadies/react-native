@@ -134,10 +134,10 @@ const AuthNavigator = createStackNavigator(
     }
 );
 
-const MainNaviagor = createSwitchNavigator({
+const MainNavigator = createSwitchNavigator({
     Startup: StartupScreen,
     Auth: AuthNavigator,
     Shop: ShopNavigator
 });
 
-export default createAppContainer(MainNaviagor);
+export default createAppContainer(MainNavigator);
