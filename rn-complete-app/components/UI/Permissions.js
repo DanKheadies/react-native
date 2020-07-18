@@ -10,7 +10,6 @@ const Permissions = props => {
 
     if (thisUser.length < 1 ||
         thisUser[0].permission !== 'editor') {
-        console.log('IT NULL');
         return (
             <View></View>
         );

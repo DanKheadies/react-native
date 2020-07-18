@@ -10,17 +10,15 @@ import { Ionicons } from '@expo/vector-icons';
 
 import Permissions from '../components/UI/Permissions';
 
-import DeviceScreen from '../screens/DeviceFeatures/DeviceScreen';
 import GoalScreen from '../screens/GoalMaker/GoalScreen';
 import GuessScreen from '../screens/GuessNumber/GuessScreen';
 import HomeScreen from '../screens/HomeScreen';
-import NavigationScreen from '../screens/Navigation/NavigationScreen';
-import ShopScreen from '../screens/Shop/ShopScreen';
 
 import CategoryMealsScreen from '../screens/Navigation/CategoryMealsScreen';
-import MealDetailScreen from '../screens/Navigation/MealDetailScreen';
 import FavoritesScreen from '../screens/Navigation/FavoritesScreen';
 import FiltersScreen from '../screens/Navigation/FiltersScreen';
+import MealDetailScreen from '../screens/Navigation/MealDetailScreen';
+import NavigationScreen from '../screens/Navigation/NavigationScreen';
 
 import * as authActions from '../store/actions/Shop/auth';
 import AuthScreen from '../screens/Shop/user/AuthScreen';
@@ -29,7 +27,13 @@ import EditProductScreen from '../screens/Shop/user/EditProductScreen';
 import OrdersScreen from '../screens/Shop/shop/OrdersScreen';
 import ProductsOverviewScreen from '../screens/Shop/shop/ProductsOverviewScreen';
 import ProductDetailScreen from '../screens/Shop/shop/ProductDetailScreen';
+import ShopScreen from '../screens/Shop/ShopScreen';
 import UserProductsScreen from '../screens/Shop/user/UserProductsScreen';
+
+import DeviceScreen from '../screens/DeviceFeatures/DeviceScreen';
+import MapScreen from '../screens/DeviceFeatures/MapScreen';
+import NewPlaceScreen from '../screens/DeviceFeatures/NewPlaceScreen';
+import PlacesDetailScreen from '../screens/DeviceFeatures/PlacesDetailScreen';
 
 import DeviceColors from '../constants/DeviceColors';
 import GoalColors from '../constants/GoalColors';
@@ -272,11 +276,14 @@ const AuthNavigator = createStackNavigator(
 
 const DeviceNavigator = createStackNavigator(
     {
-        Device: DeviceScreen
+        Device: DeviceScreen,
+        PlacesDetail: PlacesDetailScreen,
+        NewPlace: NewPlaceScreen,
+        Map: MapScreen
     },
     {
         navigationOptions: {
-            drawerLabel: 'Using Device Features..'
+            drawerLabel: 'Device Features'
         },
         defaultNavigationOptions: defaultNavOptions('device')
     }
@@ -346,10 +353,15 @@ const ShopDrawer = createDrawerNavigator(
 const DeviceDrawer = createDrawerNavigator(
     {
         AppN: AppNavigator,
-        DeviceN: DeviceNavigator,   
-        Device5: DeviceScreen,  
-        Device6: DeviceScreen,  
-        Device7: DeviceScreen,
+        DeviceN: DeviceNavigator
+    },
+    {
+        contentOptions: {
+            activeTintColor: DeviceColors.primary,
+            labelStyle: {
+                fontFamily: 'open-sans-bold'
+            }
+        }
     }
 );
 

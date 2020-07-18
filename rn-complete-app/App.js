@@ -5,23 +5,34 @@ import ReduxThunk from 'redux-thunk';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 
+import { init } from './helpers/db';
 import MainNavigator from './navigation/MainNavigator';
-import mealsReducer from './store/reducers/Navigation/meals';
 
 import authReducer from './store/reducers/Shop/auth';
 import cartReducer from './store/reducers/Shop/cart';
+import mealsReducer from './store/reducers/Navigation/meals';
 import ordersReducer from './store/reducers/Shop/orders';
+import placesReducer from './store/reducers/DeviceFeatures/places';
 import productsReducer from './store/reducers/Shop/products';
 import userReducer from './store/reducers/Shop/users';
+
+init().then(() => {
+  console.log('Initialized database.');
+}).catch(err => {
+  console.log('Initializing db failed.');
+  console.log(err);
+});
 
 const rootReducer = combineReducers({
   auth: authReducer,
   cart: cartReducer,
   meals: mealsReducer,
   orders: ordersReducer,
+  places: placesReducer,
   products: productsReducer,
   user: userReducer
 });
+
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 const fetchFonts = () => {
