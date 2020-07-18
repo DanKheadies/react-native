@@ -1,21 +1,28 @@
 {
   "expo": {
-    "name": "HelloWorld",
-    "slug": "rn-complete-app",
+    "name": "ARN Complete App",
+    "description": "An app showcasing the lessons and learning from Academind's React Native - The Practical Guide [2020 Edition] course with Maximilian Schwarzmuller via Udemy.com.",
+    "slug": "arn-complete-app",
     "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "orientation": "default",
+    "icon": "./assets/places.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash_icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#171717"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 1000
     },
     "assetBundlePatterns": [
       "**/*"
     ],
+    "android" : {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/places-adaptive.png",
+        "backgroundColor": "#171717"
+      }
+    },
     "ios": {
       "supportsTablet": true
     },
