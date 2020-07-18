@@ -32,9 +32,14 @@ FavoritesScreen.navigationOptions = navData => {
         headerTitle: 'Your Favorites',
         headerLeft: () => (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
-                <HeaderItem title="Menu" iconName="ios-menu" onPress={() => {
-                    navData.navigation.toggleDrawer();
-                }} />
+                <HeaderItem 
+                    color="navigation"
+                    iconName="ios-menu" 
+                    onPress={() => {
+                        navData.navigation.toggleDrawer();
+                    }} 
+                    title="Menu" 
+                />
             </HeaderButtons>
         )
     };

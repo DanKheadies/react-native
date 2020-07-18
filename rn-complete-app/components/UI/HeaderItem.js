@@ -14,8 +14,6 @@ const HeaderItem = props => {
             color={
                 Platform.OS === 'android' ? 'white' : 
                     props.color === 'device' ? DeviceColors.primary : 
-                    props.color === 'goal' ? GoalColors.primary : 
-                    props.color === 'guess' ? GuessColors.primary : 
                     props.color === 'navigation' ? NavigationColors.primary : 
                     props.color === 'shop' ? ShopColors.primary :
                         'black'

@@ -41,11 +41,12 @@ NavigationScreen.navigationOptions = navData => {
         headerLeft: () => (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <HeaderItem 
-                    title='Menu'
+                    color='navigation'
                     iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
                     onPress={() => {
                         navData.navigation.toggleDrawer();
                     }}
+                    title='Menu'
                 />
             </HeaderButtons>
         )

@@ -19,6 +19,9 @@ const HomeScreen = props => {
                         }}
                         title={'Make Some Goals'}
                     />
+                    <DefaultText>
+                        Simple use of state and a modal.
+                    </DefaultText>
                 </View>
                 <View style={styles.buttonContainer}>
                     <DefaultButton
@@ -28,6 +31,9 @@ const HomeScreen = props => {
                         }}
                         title={'Guess a Number'}
                     />
+                    <DefaultText>
+                        State and screen utilization with device sizing calculations.
+                    </DefaultText>
                 </View>
                 <View style={styles.buttonContainer}>
                     <DefaultButton
@@ -37,15 +43,21 @@ const HomeScreen = props => {
                         }}
                         title={'Navigate Meals'}
                     />
+                    <DefaultText>
+                        State and store with moderate persistance. Data and model use.
+                    </DefaultText>
                 </View>
                 <View style={styles.buttonContainer}>
                     <DefaultButton
                         color={'shop'}
                         onPress={() => {
-                            props.navigation.navigate('Shop');
+                            props.navigation.navigate('Startup');
                         }}
                         title={'Shop'}
                     />
+                    <DefaultText>
+                        Authentication and server-state management. 
+                    </DefaultText>
                 </View>
                 <View style={styles.buttonContainer}>
                     <DefaultButton
@@ -55,6 +67,9 @@ const HomeScreen = props => {
                         }}
                         title={'Use Device Features'}
                     />
+                    <DefaultText>
+                        Expo accessible native device features.
+                    </DefaultText>
                 </View>
             </View>
         </View>
@@ -67,7 +82,8 @@ HomeScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
     buttonContainer: {
-        marginVertical: 15
+        marginVertical: 15,
+        paddingHorizontal: 35
     },
     buttons: {
         alignItems: 'center',
@@ -75,7 +91,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly'
     },
     container: {
-        flex: 1
+        flex: 1,
+        marginBottom: 50
     },
     headerContainer: {
         alignItems: 'center',

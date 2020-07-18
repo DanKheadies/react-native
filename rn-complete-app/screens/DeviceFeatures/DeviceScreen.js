@@ -19,11 +19,12 @@ DeviceScreen.navigationOptions = navData => {
         headerLeft: () => (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <HeaderItem 
-                    title='Menu'
+                    color='device'
                     iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
                     onPress={() => {
                         navData.navigation.toggleDrawer();
                     }}
+                    title='Menu'
                 />
             </HeaderButtons>
         )

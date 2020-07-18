@@ -84,11 +84,12 @@ FiltersScreen.navigationOptions = navData => {
         headerLeft: () => (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <HeaderItem 
-                    title="Menu" 
+                    color='navigation'
                     iconName="ios-menu" 
                     onPress={() => {
                         navData.navigation.toggleDrawer();
                     }} 
+                    title="Menu" 
                 />
             </HeaderButtons>
         ),
