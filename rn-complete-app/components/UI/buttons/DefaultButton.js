@@ -9,13 +9,6 @@ import ShopColors from '../../../constants/ShopColors';
 
 const DefaultButton = props => {
     return (
-        // <TouchableOpacity disabled={props.disabled} onPress={props.onPress}>
-        //     <View style={{ ...styles.button, ...props.style }}>
-        //         <Text style={{ ...styles.buttonText, ...props.textStyling }}>
-        //             {props.text}
-        //         </Text>
-        //     </View>
-        // </TouchableOpacity>
         <Button 
             color={
                 props.color === 'device' ? DeviceColors.primary : 

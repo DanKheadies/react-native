@@ -25,7 +25,7 @@ const DeviceScreen = props => {
                     address={itemData.item.address}
                     image={itemData.item.imageUri}
                     onSelect={() => {
-                        props.navigation.navigate('PlaceDetail', {
+                        props.navigation.navigate('PlacesDetail', {
                             placeTitle: itemData.item.title,
                             placeId: itemData.item.id
                         });

@@ -2,13 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, Button, FlatList, StyleSheet, Text, View } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-// import * as cartActions from '../../../store/actions/Shop/cart';
+import * as cartActions from '../../../store/actions/Shop/cart';
 import * as ordersActions from '../../../store/actions/Shop/orders';
 import Card from '../../../components/Shop/UI/Card';
 import CartItem from '../../../components/Shop/CartItem';
 import Colors from '../../../constants/ShopColors';
 
-const CartScreen = props => {
+const CartScreen = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -79,7 +79,9 @@ const CartScreen = props => {
                     <CartItem
                         amount={itemData.item.sum} 
                         deletable
-                        onRemove={sendOrderHandler}
+                        onRemove={() => {
+                            dispatch(cartActions.removeFromCart(itemData.item.productId));
+                        }}
                         quantity={itemData.item.quantity}
                         title={itemData.item.productTitle}
                     />

@@ -73,7 +73,7 @@ const AppNavigator = createStackNavigator(
         AppSelect: {
             screen: HomeScreen,
             navigationOptions: {
-                headerTitle: 'Apps'
+                headerTitle: 'Academind Apps w/ Max'
             }
         },
     }, 
@@ -324,7 +324,10 @@ const ShopDrawer = createDrawerNavigator(
         contentComponent: props => {
             const dispatch = useDispatch();
             return (
-                <View style={{flex: 1}}>
+                <View style={{
+                    flex: 1,
+                    marginTop: Platform.OS === 'android' ? 25 : 0
+                }}>
                     <SafeAreaView
                         forceInset={{
                             horizontal: 'never',

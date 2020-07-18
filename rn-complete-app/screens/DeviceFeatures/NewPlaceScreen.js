@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Button, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, Button, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 
 import * as placesActions from '../../store/actions/DeviceFeatures/places';
@@ -23,6 +23,16 @@ const NewPlaceScreen = props => {
     };
 
     const savePlaceHandler = () => {
+        if (titleValue === '' ||
+            selectedImage === undefined ||
+            selectedLocation === undefined) {
+            Alert.alert(
+                'Oh nooo.. Looks like ya left something blank.', 'Please make sure there is a title, image, and location. Thank you.', [
+                    { text: 'Okay' }
+            ]);
+            return;
+        }
+
         dispatch(placesActions.addPlace(titleValue, selectedImage, selectedLocation));
         props.navigation.goBack();
     };
