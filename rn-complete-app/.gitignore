@@ -9,6 +9,7 @@ npm-debug.*
 *.orig.*
 web-build/
 env.js
+app_PRIVATE.json
 
 # macOS
 .DS_Store

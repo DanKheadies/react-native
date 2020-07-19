@@ -18,12 +18,26 @@
       "**/*"
     ],
     "android" : {
+      "package": "com.holisticgaming.arn_complete_app",
+      "versionCode": 1,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/places-adaptive.png",
-        "backgroundColor": "#171717"
+        "backgroundColor": "#171717",
+        "foregroundImage": "./assets/places-adaptive.png"
+      },
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "CAMERA",
+        "WRITE_EXTERNAL_STORAGE"
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": "_REMOVED_"
+        }
       }
     },
     "ios": {
+      "bundleIdentifier": "com.holisticgaming.arn-complete-app",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "web": {
