@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useReducer, useState } from 'react';
-import { ActivityIndicator, Alert, Button, KeyboardAvoidingView, ScrollView, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Alert, Button, Keyboard, KeyboardAvoidingView, ScrollView, StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient'
 
@@ -79,7 +79,7 @@ const AuthScreen = props => {
         setIsLoading(true);
         try {
             await dispatch(action);
-            props.navigation.navigate('Shop');
+            // props.navigation.navigate('Shop');
         } catch (err) {
             setError(err.message);
             setIsLoading(false);
@@ -103,66 +103,70 @@ const AuthScreen = props => {
             keyboardVerticalOffset={50}
             style={styles.screen}
         >
-            <LinearGradient
-                colors={['#ffedff', '#ffe3ff']}
-                style={styles.gradient}
-            >
-                <Card style={styles.authContainer}>
-                    <ScrollView>
-                        <Input 
-                            autoCapitalize="none"
-                            email
-                            errorText="Please enter a valid email address."
-                            id="email"
-                            initialValue=''
-                            keyboardType="email-address"
-                            label="E-Mail"
-                            onInputChange={inputChangeHandler}
-                            required
-                        />
-                        <Input 
-                            autoCapitalize="none"
-                            errorText="Please enter a valid password."
-                            id="password"
-                            initialValue=''
-                            keyboardType="default"
-                            label="Password"
-                            minLength={5}
-                            onInputChange={inputChangeHandler}
-                            required
-                            secureTextEntry
-                        />
-                        <View style={styles.button}>
-                            {isLoading ? (
-                                <ActivityIndicator 
-                                    color={Colors.primary}
-                                    size='small'
-                                />
-                            ) : (
-                                <Button
-                                    color={Colors.primary}
-                                    onPress={authHandler}
-                                    title={isSignUp ? 'Sign Up' : 'Login'}
-                                />
-                            )}
-                        </View>
-                        <View style={styles.button}>
-                            <Button
-                                color={Colors.accent}
-                                onPress={() => {
-                                    setIsSignUp(prevState => !prevState);
-                                }}
-                                title={`Switch to ${isSignUp ? 'Login' : 'Sign Up'}`}
+            <TouchableWithoutFeedback onPress={() => {
+                    Keyboard.dismiss();
+                }}>
+                <LinearGradient
+                    colors={['#ffedff', '#ffe3ff']}
+                    style={styles.gradient}
+                >
+                    <Card style={styles.authContainer}>
+                        <ScrollView>
+                            <Input 
+                                autoCapitalize="none"
+                                email
+                                errorText="Please enter a valid email address."
+                                id="email"
+                                initialValue=''
+                                keyboardType="email-address"
+                                label="E-Mail"
+                                onInputChange={inputChangeHandler}
+                                required
                             />
-                        </View>
-                    </ScrollView>
-                </Card>
-            </LinearGradient>
+                            <Input 
+                                autoCapitalize="none"
+                                errorText="Please enter a valid password."
+                                id="password"
+                                initialValue=''
+                                keyboardType="default"
+                                label="Password"
+                                minLength={5}
+                                onInputChange={inputChangeHandler}
+                                required
+                                secureTextEntry
+                            />
+                            <View style={styles.button}>
+                                {isLoading ? (
+                                    <ActivityIndicator 
+                                        color={Colors.primary}
+                                        size='small'
+                                    />
+                                ) : (
+                                    <Button
+                                        color={Colors.primary}
+                                        onPress={authHandler}
+                                        title={isSignUp ? 'Sign Up' : 'Login'}
+                                    />
+                                )}
+                            </View>
+                            <View style={styles.button}>
+                                <Button
+                                    color={Colors.accent}
+                                    onPress={() => {
+                                        setIsSignUp(prevState => !prevState);
+                                    }}
+                                    title={`Switch to ${isSignUp ? 'Login' : 'Sign Up'}`}
+                                />
+                            </View>
+                        </ScrollView>
+                    </Card>
+                </LinearGradient>
+            </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
     );
 };
 
-AuthScreen.navigationOptions = {
+export const screenOptions = {
     headerTitle: 'Authenticate'
 }
 

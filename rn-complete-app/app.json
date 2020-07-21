@@ -38,6 +38,11 @@
     "ios": {
       "bundleIdentifier": "com.holisticgaming.arn-complete-app",
       "buildNumber": "1.0.0",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to take a picture of your surroundings for the 'Device Feature's - Place' thumbnail.",
+        "NSLocationWhenInUseUsageDescription": "This app uses your location to create a pin at your address for the 'Device Feature's - Place'.",
+        "NSPhotoLibraryAddUsageDescription": "This app uses the photo library to save your picture of your location in 'Device Feature's - Place'."
+      },
       "supportsTablet": true
     },
     "web": {

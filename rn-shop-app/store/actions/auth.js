@@ -2,6 +2,7 @@ import { AsyncStorage } from 'react-native';
 
 export const AUTHENTICATE = 'AUTHENTICATE';
 export const LOGOUT = 'LOGOUT';
+export const SET_DID_TRY_AL = 'SET_DID_TRY_AL';
 // export const LOGIN = 'LOGIN';
 // export const SIGNUP = 'SIGNUP';
 
@@ -16,6 +17,10 @@ export const authenticate = (userId, token, expiryTime) => {
             token: token 
         });
     };
+};
+
+export const setDidTryAL = () => {
+    return { type: SET_DID_TRY_AL };
 };
 
 export const signup = (email, password) => {

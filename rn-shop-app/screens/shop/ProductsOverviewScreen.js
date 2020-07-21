@@ -29,13 +29,13 @@ const ProductsOverviewScreen = props => {
     }, [dispatch, setIsRefreshing, setError]);
 
     useEffect(() => {
-        const willFocusSub = props.navigation.addListener(
-            'willFocus', 
+        const unsubscribe = props.navigation.addListener(
+            'focus', 
             loadProducts
         );
 
         return () => {
-            willFocusSub.remove();
+            unsubscribe();
         };
     }, [loadProducts]);
 
@@ -121,27 +121,31 @@ const ProductsOverviewScreen = props => {
     );
 };
 
-ProductsOverviewScreen.navigationOptions = navData => {
+export const screenOptions = navData => {
     return {
         headerTitle: 'All Products',
-        headerLeft: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
-            <Item 
-                title='Menu'
-                iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
-                onPress={() => {
-                    navData.navigation.toggleDrawer();
-                }}
-            />
-        </HeaderButtons>,
-        headerRight: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
-            <Item 
-                title='Cart'
-                iconName={Platform.OS === 'android' ? 'md-cart' : 'ios-cart'}
-                onPress={() => {
-                    navData.navigation.navigate('Cart')
-                }}
-            />
-        </HeaderButtons>
+        headerLeft: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item 
+                    title='Menu'
+                    iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
+                    onPress={() => {
+                        navData.navigation.toggleDrawer();
+                    }}
+                />
+            </HeaderButtons>
+        ),
+        headerRight: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item 
+                    title='Cart'
+                    iconName={Platform.OS === 'android' ? 'md-cart' : 'ios-cart'}
+                    onPress={() => {
+                        navData.navigation.navigate('Cart')
+                    }}
+                />
+            </HeaderButtons>
+        )
     };
 };
 

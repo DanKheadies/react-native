@@ -8,7 +8,7 @@ import * as Font from 'expo-font';
 import authReducer from './store/reducers/auth';
 import cartReducer from './store/reducers/cart';
 import ordersReducer from './store/reducers/orders';
-import NavigationContainer from './navigation/NavigationContainer';
+import AppNavigator from './navigation/AppNavigator';
 import productsReducer from './store/reducers/products';
 
 const rootReducer = combineReducers({
@@ -42,7 +42,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <NavigationContainer />
+      <AppNavigator />
     </Provider>
   );
 }

@@ -116,27 +116,31 @@ const UserProductsScreen = props => {
     );
 };
 
-UserProductsScreen.navigationOptions = navData => {
+export const screenOptions = navData => {
     return {
         headerTitle: 'Your Products',
-        headerLeft: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
-            <Item 
-                title='Menu'
-                iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
-                onPress={() => {
-                    navData.navigation.toggleDrawer();
-                }}
-            />
-        </HeaderButtons>,
-        headerRight: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
-            <Item 
-                title='Add'
-                iconName={Platform.OS === 'android' ? 'md-create' : 'ios-create'}
-                onPress={() => {
-                    navData.navigation.navigate('EditProduct');
-                }}
-            />
-        </HeaderButtons>
+        headerLeft: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item 
+                    title='Menu'
+                    iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
+                    onPress={() => {
+                        navData.navigation.toggleDrawer();
+                    }}
+                />
+            </HeaderButtons>
+        ),
+        headerRight: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item 
+                    title='Add'
+                    iconName={Platform.OS === 'android' ? 'md-create' : 'ios-create'}
+                    onPress={() => {
+                        navData.navigation.navigate('EditProduct');
+                    }}
+                />
+            </HeaderButtons>
+        )
     };
 };
 
