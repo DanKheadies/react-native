@@ -46,8 +46,16 @@ const FiltersScreen = props => {
     }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian, dispatch]);
 
     useEffect(() => {
-        navigation.setParams({
-            save: saveFilters
+        navigation.setOptions({
+            headerRight: () => (
+                <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                    <HeaderItem 
+                        title="Save" 
+                        iconName="ios-save" 
+                        onPress={saveFilters} 
+                    />
+                </HeaderButtons>
+            )
         });
     }, [saveFilters]);
 
@@ -78,7 +86,7 @@ const FiltersScreen = props => {
     );
 };
 
-FiltersScreen.navigationOptions = navData => {
+export const screenOptions = navData => {
     return {
         headerTitle: 'Filter Meals',
         headerLeft: () => (
@@ -88,17 +96,7 @@ FiltersScreen.navigationOptions = navData => {
                     iconName="ios-menu" 
                     onPress={() => {
                         navData.navigation.toggleDrawer();
-                    }} 
-                    title="Menu" 
-                />
-            </HeaderButtons>
-        ),
-        headerRight: () => (
-            <HeaderButtons HeaderButtonComponent={HeaderButton}>
-                <HeaderItem 
-                    title="Save" 
-                    iconName="ios-save" 
-                    onPress={navData.navigation.getParam('save')} 
+                    }}
                 />
             </HeaderButtons>
         )

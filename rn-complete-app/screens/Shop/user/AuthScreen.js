@@ -1,12 +1,16 @@
 import React, { useCallback, useEffect, useReducer, useState } from 'react';
 import { ActivityIndicator, Alert, Button, Keyboard, KeyboardAvoidingView, ScrollView, StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
+import { HeaderButtons } from 'react-navigation-header-buttons';
 import { useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient'
 
+import * as appActions from '../../../store/actions/App/app';
 import * as authActions from '../../../store/actions/Shop/auth';
 import * as usersActions from '../../../store/actions/Shop/users'
 import Card from '../../../components/Shop/UI/Card';
 import Colors from '../../../constants/ShopColors';
+import HeaderButton from '../../../components/UI/buttons/HeaderButton';
+import HeaderItem from '../../../components/UI/HeaderItem';
 import Input from '../../../components/Shop/UI/Input';
 
 const FORM_INPUT_UPDATE = 'UPDATE';
@@ -85,9 +89,9 @@ const AuthScreen = props => {
         setIsLoading(true);
         try {
             await dispatch(action);
-            if (newUser) { await dispatch(newUser); }
-            
-            props.navigation.navigate('Products');
+            if (newUser) { 
+                await dispatch(newUser); 
+            }
         } catch (err) {
             setError(err.message);
             setIsLoading(false);
@@ -111,9 +115,7 @@ const AuthScreen = props => {
             keyboardVerticalOffset={50}
             style={styles.screen}
         >
-            <TouchableWithoutFeedback onPress={() => {
-                    Keyboard.dismiss();
-                }}>
+            <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); }}>
                 <LinearGradient
                     colors={[Colors.pink1, Colors.pink2]}
                     style={styles.gradient}
@@ -174,9 +176,25 @@ const AuthScreen = props => {
     );
 };
 
-AuthScreen.navigationOptions = {
-    headerTitle: 'Authenticate'
-}
+export const screenOptions = () => {
+    const dispatch = useDispatch();
+
+    return {
+        headerTitle: 'Authenticate',
+        headerLeft: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <HeaderItem 
+                    color='shop'
+                    iconName={Platform.OS === 'android' ? 'md-arrow-back' : 'ios-arrow-back'}
+                    onPress={() => {
+                        dispatch(appActions.selectNavigator('home'));
+                    }}
+                    text='Apps'
+                />
+            </HeaderButtons>
+        )
+    };
+};
 
 const styles = StyleSheet.create({
     authContainer: {

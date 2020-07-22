@@ -3,6 +3,7 @@ import { FlatList, Platform } from 'react-native';
 import { HeaderButtons } from 'react-navigation-header-buttons';
 import { useDispatch, useSelector } from 'react-redux';
 
+import * as appActions from '../../store/actions/App/app';
 import * as placesActions from '../../store/actions/DeviceFeatures/places';
 import HeaderButton from '../../components/UI/buttons/HeaderButton';
 import HeaderItem from '../../components/UI/HeaderItem';
@@ -37,9 +38,23 @@ const DeviceScreen = props => {
     );
 };
 
-DeviceScreen.navigationOptions = navData => {
+export const screenOptions = navData => {
+    const dispatch = useDispatch();
+
     return {
         headerTitle: 'Device',
+        headerLeft: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <HeaderItem 
+                    color='device'
+                    iconName={Platform.OS === 'android' ? 'md-arrow-back' : 'ios-arrow-back'}
+                    onPress={() => {
+                        dispatch(appActions.selectNavigator('home'));
+                    }}
+                    text='Apps'
+                />
+            </HeaderButtons>
+        ),
         headerRight: () => (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <HeaderItem 
@@ -48,18 +63,6 @@ DeviceScreen.navigationOptions = navData => {
                     onPress={() => {
                         navData.navigation.navigate('NewPlace')
                     }}
-                />
-            </HeaderButtons>
-        ),
-        headerLeft: () => (
-            <HeaderButtons HeaderButtonComponent={HeaderButton}>
-                <HeaderItem 
-                    color='device'
-                    iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
-                    onPress={() => {
-                        navData.navigation.toggleDrawer();
-                    }}
-                    title='Menu'
                 />
             </HeaderButtons>
         )

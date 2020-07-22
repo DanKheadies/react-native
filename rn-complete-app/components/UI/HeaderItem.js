@@ -1,28 +1,61 @@
 import React from 'react';
-import { Platform } from 'react-native';
-import { Item } from 'react-navigation-header-buttons';
+import { Platform, StyleSheet, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
+import DefaultText from '../../components/UI/DefaultText';
 import DeviceColors from '../../constants/DeviceColors';
 import GoalColors from '../../constants/GoalColors';
 import GuessColors from '../../constants/GuessColors';
 import NavigationColors from '../../constants/NavigationColors';
 import ShopColors from '../../constants/ShopColors';
 
-const HeaderItem = props => {
+const getColor = color => {
     return (
-        <Item 
-            color={
-                Platform.OS === 'android' ? 'white' : 
-                    props.color === 'device' ? DeviceColors.primary : 
-                    props.color === 'navigation' ? NavigationColors.primary : 
-                    props.color === 'shop' ? ShopColors.primary :
-                        'black'
-            }
-            iconName={props.iconName} 
-            onPress={props.onPress} 
-            title={props.title} 
-        />
+        Platform.OS === 'android' ? 'white' : 
+            color === 'device' ? DeviceColors.primary : 
+            color === 'goal' ? GoalColors.primary :
+            color === 'guess' ? GuessColors.primary :
+            color === 'navigation' ? NavigationColors.primary : 
+            color === 'shop' ? ShopColors.primary :
+                'black'
     );
 };
+
+const HeaderItem = props => {
+    return (
+        <TouchableOpacity 
+            onPress={props.onPress} 
+            style={{ ...styles.button, ...props.style }}
+        >
+            <Ionicons 
+                color={getColor(props.color)}
+                name={props.iconName}
+                size={23}
+            />
+            {props.text && Platform.OS === 'ios' &&
+                <DefaultText 
+                    style={{
+                        ...styles.text,
+                        color: getColor(props.color)
+                    }}
+                >
+                    {props.text}
+                </DefaultText>
+            }
+        </TouchableOpacity>
+    );
+};
+
+const styles = StyleSheet.create({
+    button: {
+        flexDirection: 'row',
+        paddingHorizontal: Platform.OS === 'android' ? 20 : 10,
+        paddingVertical: 8
+    },
+    text: {
+        fontSize: 18,
+        paddingLeft: 8
+    },
+});
 
 export default HeaderItem;

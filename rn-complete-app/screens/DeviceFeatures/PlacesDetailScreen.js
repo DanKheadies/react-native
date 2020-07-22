@@ -6,7 +6,7 @@ import Colors from '../../constants/DeviceColors';
 import MapPreview from '../../components/DeviceFeatures/MapPreview';
 
 const PlacesDetailScreen = props => {
-    const placeId = props.navigation.getParam('placeId');
+    const placeId = props.route.params.placeId;
     const selectedPlace = useSelector(state => state.places.places
         .find(place => place.id === placeId)
     );
@@ -45,9 +45,9 @@ const PlacesDetailScreen = props => {
     );
 };
 
-PlacesDetailScreen.navigationOptions = navData => {
+export const screenOptions = navData => {
     return {
-        headerTitle: navData.navigation.getParam('placeTitle')
+        headerTitle: navData.route.params.placeTitle
     };
 };
 

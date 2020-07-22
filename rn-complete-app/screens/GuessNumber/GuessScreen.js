@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { FlatList, Platform, SafeAreaView, StyleSheet, View } from 'react-native'; 
+import { HeaderButtons } from 'react-navigation-header-buttons';
+import { useDispatch } from 'react-redux';
 
+import * as appActions from '../../store/actions/App/app';
+import Colors from '../../constants/GuessColors';
+import DefaultButton from '../../components/UI/buttons/DefaultButton';
 import GameOverScreen from './GameOverScreen';
 import GameScreen from './GameScreen';
+import HeaderButton from '../../components/UI/buttons/HeaderButton';
+import HeaderItem from '../../components/UI/HeaderItem';
 import StartGameScreen from './StartGameScreen';
 
 const GuessScreen = () => {
@@ -49,8 +56,24 @@ const GuessScreen = () => {
     );
 }
 
-GuessScreen.navigationOptions = {
-    headerTitle: 'Guess'
+export const screenOptions = navData => {
+    const dispatch = useDispatch();
+
+    return {
+        headerTitle: 'Guess',
+        headerLeft: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <HeaderItem 
+                    color='guess'
+                    iconName={Platform.OS === 'android' ? 'md-arrow-back' : 'ios-arrow-back'}
+                    onPress={() => {
+                        dispatch(appActions.selectNavigator('home'));
+                    }}
+                    text='Apps'
+                />
+            </HeaderButtons>
+        )
+    };
 };
 
 const styles = StyleSheet.create({

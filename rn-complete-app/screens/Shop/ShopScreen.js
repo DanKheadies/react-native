@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import * as authActions from '../../store/actions/Shop/auth';
 import Colors from '../../constants/ShopColors';
 
-const ShopScreen = props => {
+const ShopScreen = () => {
     const dispatch = useDispatch();
     
     useEffect(() => {
@@ -13,7 +13,7 @@ const ShopScreen = props => {
             const userData = await AsyncStorage.getItem('userData');
             
             if (!userData) {
-                props.navigation.navigate('Auth');
+                dispatch(authActions.setDidTryAL());
                 return;
             }
             const transformedData = JSON.parse(userData);
@@ -21,13 +21,12 @@ const ShopScreen = props => {
             const expirationDate = new Date(expiryDate);
 
             if (expirationDate <= new Date() || !token || !userId) {
-                props.navigation.navigate('Auth');
+                dispatch(authActions.setDidTryAL());
                 return;
             }
 
             const expirationTime = expirationDate.getTime() - new Date().getTime();
 
-            props.navigation.navigate('Products');
             dispatch(authActions.authenticate(userId, token, expirationTime));
         };
 

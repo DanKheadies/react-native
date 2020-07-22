@@ -10,7 +10,7 @@ const LocationPicker = props => {
     const [pickedLocation, setPickedLocation] = useState();
     const [isFetching, setIsFetching] = useState(false);
 
-    const mapPickedLocation = props.navigation.getParam('pickedLocation');
+    const mapPickedLocation = props.route.params ? props.route.params.pickedLocation : null;
 
     const { onLocationPicked } = props;
 
@@ -50,7 +50,6 @@ const LocationPicker = props => {
             const location = await Location.getCurrentPositionAsync({
                 timeout: 5000
             });
-            // console.log(location);
 
             setPickedLocation({
                 lat: location.coords.latitude,

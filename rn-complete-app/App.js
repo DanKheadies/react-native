@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 
-import { init } from './helpers/db';
-import MainNavigator from './navigation/MainNavigator';
+// import { init } from './helpers/db';
+import ARNNavigator from './navigation/ARNNavigator';
 
+import appReducer from './store/reducers/App/app';
 import authReducer from './store/reducers/Shop/auth';
 import cartReducer from './store/reducers/Shop/cart';
 import mealsReducer from './store/reducers/Navigation/meals';
@@ -16,14 +17,15 @@ import placesReducer from './store/reducers/DeviceFeatures/places';
 import productsReducer from './store/reducers/Shop/products';
 import userReducer from './store/reducers/Shop/users';
 
-init().then(() => {
-  console.log('Initialized database.');
-}).catch(err => {
-  console.log('Initializing db failed.');
-  console.log(err);
-});
+// init().then(() => {
+//   console.log('Initialized database.');
+// }).catch(err => {
+//   console.log('Initializing db failed.');
+//   console.log(err);
+// });
 
 const rootReducer = combineReducers({
+  app: appReducer,
   auth: authReducer,
   cart: cartReducer,
   meals: mealsReducer,
@@ -56,7 +58,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <MainNavigator />
+      <ARNNavigator />
     </Provider>
   );
 }

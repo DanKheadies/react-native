@@ -108,7 +108,6 @@ const UserProductsScreen = props => {
                         onPress={() => {
                             deleteHandler(itemData.item.id);
                         }} 
-                        // onPress={deleteHandler.bind(this, itemData.item.id)}
                         title="Delete" 
                     />
                 </ProductItem>
@@ -117,29 +116,31 @@ const UserProductsScreen = props => {
     );
 };
 
-UserProductsScreen.navigationOptions = navData => {
+export const screenOptions = navData => {
     return {
         headerTitle: 'Your Products',
-        headerLeft: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
-            <HeaderItem
-                color='shop' 
-                iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
-                onPress={() => {
-                    navData.navigation.toggleDrawer();
-                }}
-                title='Menu'
-            />
-        </HeaderButtons>,
-        headerRight: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
-            <HeaderItem
-                color='shop' 
-                iconName={Platform.OS === 'android' ? 'md-create' : 'ios-create'}
-                onPress={() => {
-                    navData.navigation.navigate('EditProduct');
-                }}
-                title='Add'
-            />
-        </HeaderButtons>
+        headerLeft: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <HeaderItem
+                    color='shop' 
+                    iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
+                    onPress={() => {
+                        navData.navigation.toggleDrawer();
+                    }}
+                />
+            </HeaderButtons>
+        ),
+        headerRight: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <HeaderItem
+                    color='shop' 
+                    iconName={Platform.OS === 'android' ? 'md-create' : 'ios-create'}
+                    onPress={() => {
+                        navData.navigation.navigate('EditProduct');
+                    }}
+                />
+            </HeaderButtons>
+        )
     };
 };
 

@@ -31,13 +31,13 @@ const ProductsOverviewScreen = props => {
     }, [dispatch, setIsRefreshing, setError]);
 
     useEffect(() => {
-        const willFocusSub = props.navigation.addListener(
-            'willFocus', 
+        const unsubscribe = props.navigation.addListener(
+            'focus', 
             loadProducts
         );
 
         return () => {
-            willFocusSub.remove();
+            unsubscribe();
         };
     }, [loadProducts]);
 
@@ -48,17 +48,6 @@ const ProductsOverviewScreen = props => {
         });
     }, [dispatch, loadProducts]);
 
-    useEffect(() => {
-        props.navigation.setParams({
-            toggleD: toggleDrawerHandler
-        });
-    }, [toggleDrawerHandler]);
-
-    const toggleDrawerHandler = () => {
-        dispatch(usersActions.fetchUser());
-        props.navigation.toggleDrawer();
-    };
-
     const selectItemHandler = (id, title) => {
         props.navigation.navigate('ProductDetail', {
             productId: id,
@@ -67,7 +56,6 @@ const ProductsOverviewScreen = props => {
     };
 
     if (error) {
-        console.log(error);
         return (
             <View style={styles.centered}>
                 <Text>An error occured!</Text>
@@ -135,29 +123,31 @@ const ProductsOverviewScreen = props => {
     );
 };
 
-ProductsOverviewScreen.navigationOptions = navData => {
-    const toggleDrawerFn = navData.navigation.getParam('toggleD');
-
+export const screenOptions = navData => {
     return {
         headerTitle: 'All Products',
-        headerLeft: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
-            <HeaderItem 
-                color='shop'
-                iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
-                onPress={toggleDrawerFn}
-                title='Menu'
-            />
-        </HeaderButtons>,
-        headerRight: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
-            <HeaderItem 
-                color='shop'
-                iconName={Platform.OS === 'android' ? 'md-cart' : 'ios-cart'}
-                onPress={() => {
-                    navData.navigation.navigate('Cart')
-                }}
-                title='Cart'
-            />
-        </HeaderButtons>
+        headerLeft: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <HeaderItem 
+                    color='shop'
+                    iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
+                    onPress={() => {
+                        navData.navigation.toggleDrawer();
+                    }}
+                />
+            </HeaderButtons>
+        ),
+        headerRight: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <HeaderItem 
+                    color='shop'
+                    iconName={Platform.OS === 'android' ? 'md-cart' : 'ios-cart'}
+                    onPress={() => {
+                        navData.navigation.navigate('Cart')
+                    }}
+                />
+            </HeaderButtons>
+        )
     };
 };
 

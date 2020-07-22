@@ -1,10 +1,14 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import { useDispatch } from 'react-redux';
 
+import * as appActions from '../store/actions/App/app';
 import DefaultButton from '../components/UI/buttons/DefaultButton';
 import DefaultText from '../components/UI/DefaultText';
 
-const HomeScreen = props => {
+const HomeScreen = () => {
+    const dispatch = useDispatch();
+
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
@@ -16,7 +20,7 @@ const HomeScreen = props => {
                         <DefaultButton
                             color={'goal'}
                             onPress={() => {
-                                props.navigation.navigate('Goals');
+                                dispatch(appActions.selectNavigator('goals'));
                             }}
                             title={'Make Some Goals'}
                         />
@@ -30,7 +34,7 @@ const HomeScreen = props => {
                         <DefaultButton
                             color={'guess'}
                             onPress={() => {
-                                props.navigation.navigate('Guess');
+                                dispatch(appActions.selectNavigator('guess'));
                             }}
                             title={'Guess a Number'}
                         />
@@ -44,7 +48,7 @@ const HomeScreen = props => {
                         <DefaultButton
                             color={'navigation'}
                             onPress={() => {
-                                props.navigation.navigate('MealsFav');
+                                dispatch(appActions.selectNavigator('navigation'));
                             }}
                             title={'Navigate Meals'}
                         />
@@ -58,7 +62,7 @@ const HomeScreen = props => {
                         <DefaultButton
                             color={'shop'}
                             onPress={() => {
-                                props.navigation.navigate('Startup');
+                                dispatch(appActions.selectNavigator('shop'));
                             }}
                             title={'Shop'}
                         />
@@ -72,7 +76,7 @@ const HomeScreen = props => {
                         <DefaultButton
                             color={'device'}
                             onPress={() => {
-                                props.navigation.navigate('Device');
+                                dispatch(appActions.selectNavigator('device'));
                             }}
                             title={'Use Device Features'}
                         />
@@ -86,8 +90,8 @@ const HomeScreen = props => {
     );
 };
 
-HomeScreen.navigationOptions = {
-    headerTitle: 'Home'
+export const screenOptions = {
+    headerTitle: 'Academind Apps w/ Max'
 };
 
 const styles = StyleSheet.create({

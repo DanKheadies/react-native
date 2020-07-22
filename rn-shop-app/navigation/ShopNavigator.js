@@ -2,9 +2,6 @@ import React from 'react';
 import { Button, Platform, SafeAreaView, View } from 'react-native';
 import { createDrawerNavigator, DrawerItemList } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
-// import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-// import { createDrawerNavigator, DrawerNavigatorItems } from 'react-navigation-drawer';
-// import { createStackNavigator } from 'react-navigation-stack';
 import { useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -16,7 +13,6 @@ import EditProductScreen, { screenOptions as editProductScreenOptions } from '..
 import OrdersScreen, { screenOptions as ordersScreenOptions } from '../screens/shop/OrdersScreen';
 import ProductsOverviewScreen, { screenOptions as productsOverviewScreenOptions } from '../screens/shop/ProductsOverviewScreen';
 import ProductDetailScreen, { screscreenOptions as productDetailScreenOptionsenOptions } from '../screens/shop/ProductDetailScreen';
-import StartupScreen from '../screens/StartupScreen';
 import UserProductsScreen, { screenOptions as userProductsScreenOptions } from '../screens/user/UserProductsScreen';
 
 const defaultNavOptions = {

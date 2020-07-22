@@ -56,6 +56,7 @@ const NewPlaceScreen = props => {
                 <LocationPicker
                     onLocationPicked={locationPickedHandler}
                     navigation={props.navigation}
+                    route={props.route}
                 />
                 <Button 
                     color={Colors.primary}
@@ -67,7 +68,7 @@ const NewPlaceScreen = props => {
     );
 };
 
-NewPlaceScreen.navigationOptions = {
+export const screenOptions = {
     headerTitle: 'Add New Place'
 };
 

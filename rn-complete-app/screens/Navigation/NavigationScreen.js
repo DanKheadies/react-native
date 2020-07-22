@@ -13,11 +13,8 @@ const NavigationScreen = props => {
             <CategoryGridTile 
                 color={itemData.item.color}
                 onSelect={() => {
-                    props.navigation.navigate({ 
-                        routeName: 'CategoryMeals', 
-                        params: {
-                            categoryId: itemData.item.id
-                        } 
+                    props.navigation.navigate('CategoryMeals', { 
+                        categoryId: itemData.item.id
                     });
                 }} 
                 title={itemData.item.title} 
@@ -27,7 +24,6 @@ const NavigationScreen = props => {
 
     return (
          <FlatList 
-            // keyExtractor={(item, index) => item.id}
             data={CATEGORIES} 
             renderItem={renderGridItem} 
             numColumns={2} 
@@ -35,7 +31,7 @@ const NavigationScreen = props => {
     );
 };
 
-NavigationScreen.navigationOptions = navData => {
+export const screenOptions = navData => {
     return {
         headerTitle: 'Meal Categories',
         headerLeft: () => (
@@ -46,7 +42,6 @@ NavigationScreen.navigationOptions = navData => {
                     onPress={() => {
                         navData.navigation.toggleDrawer();
                     }}
-                    title='Menu'
                 />
             </HeaderButtons>
         )

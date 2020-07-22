@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { FlatList, Platform, StyleSheet, View } from 'react-native';
+import { FlatList, Platform, StyleSheet, View } from 'react-native'; 
 import { HeaderButtons } from 'react-navigation-header-buttons';
+import { useDispatch } from 'react-redux';
 
+import * as appActions from '../../store/actions/App/app';
 import DefaultButton from '../../components/UI/buttons/DefaultButton';
 import GoalInput from '../../components/GoalMaker/GoalInput';
 import GoalItem from '../../components/GoalMaker/GoalItem';
@@ -60,21 +62,23 @@ const GoalScreen = () => {
     );
 }
 
-GoalScreen.navigationOptions = navData => {
+export const screenOptions = navData => {
+    const dispatch = useDispatch();
+
     return {
         headerTitle: 'Goals',
-        // headerLeft: () => (
-        //     <HeaderButtons HeaderButtonComponent={HeaderButton}>
-        //         <HeaderItem 
-        //             color='goal'
-        //             iconName={Platform.OS === 'android' ? 'md-arrow-round-back' : 'ios-arrow-round-back'} 
-        //             onPress={() => {
-        //                 navData.navigation.goBack();
-        //             }} 
-        //             title="Back" 
-        //         />
-        //     </HeaderButtons>
-        // )
+        headerLeft: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <HeaderItem 
+                    color='goal'
+                    iconName={Platform.OS === 'android' ? 'md-arrow-back' : 'ios-arrow-back'}
+                    onPress={() => {
+                        dispatch(appActions.selectNavigator('home'));
+                    }}
+                    text='Apps'
+                />
+            </HeaderButtons>
+        )
     };
 };
 
@@ -82,6 +86,7 @@ const styles = StyleSheet.create({
     bodyText: {
         fontFamily: 'open-sans'
     },
+    
     title: {
         fontFamily: 'open-sans-bold',
         fontSize: 18

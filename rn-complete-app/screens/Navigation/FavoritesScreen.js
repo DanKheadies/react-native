@@ -27,7 +27,7 @@ const FavoritesScreen = props => {
     );
 };
 
-FavoritesScreen.navigationOptions = navData => {
+export const screenOptions = navData => {
     return {
         headerTitle: 'Your Favorites',
         headerLeft: () => (
@@ -38,7 +38,6 @@ FavoritesScreen.navigationOptions = navData => {
                     onPress={() => {
                         navData.navigation.toggleDrawer();
                     }} 
-                    title="Menu" 
                 />
             </HeaderButtons>
         )
