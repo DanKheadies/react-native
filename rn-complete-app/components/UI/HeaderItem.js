@@ -7,6 +7,7 @@ import DeviceColors from '../../constants/DeviceColors';
 import GoalColors from '../../constants/GoalColors';
 import GuessColors from '../../constants/GuessColors';
 import NavigationColors from '../../constants/NavigationColors';
+import NotificationColors from '../../constants/NotificationColors';
 import ShopColors from '../../constants/ShopColors';
 
 const getColor = color => {
@@ -16,6 +17,7 @@ const getColor = color => {
             color === 'goal' ? GoalColors.primary :
             color === 'guess' ? GuessColors.primary :
             color === 'navigation' ? NavigationColors.primary : 
+            color === 'notifications' ? NotificationColors.primary :
             color === 'shop' ? ShopColors.primary :
                 'black'
     );

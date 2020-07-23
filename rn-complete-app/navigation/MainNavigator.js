@@ -8,6 +8,7 @@ import DeviceColors from '../constants/DeviceColors';
 import GoalColors from '../constants/GoalColors';
 import GuessColors from '../constants/GuessColors';
 import NavigationColors from '../constants/NavigationColors';
+import NotificationsColors from '../constants/NotificationColors';
 import ShopColors from '../constants/ShopColors';
 
 const getColor = appStack => {
@@ -16,6 +17,7 @@ const getColor = appStack => {
         appStack === 'goal' ? GoalColors.primary :
         appStack === 'guess' ? GuessColors.primary :
         appStack === 'navigation' ? NavigationColors.primary :
+        appStack === 'notifications' ? NotificationsColors.primary :
         appStack === 'shop' ? ShopColors.primary :
             'black'
     );

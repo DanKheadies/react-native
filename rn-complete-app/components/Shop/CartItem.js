@@ -8,8 +8,10 @@ const CartItem = props => {
     return (
         <View style={styles.cardItem}>
             <View style={styles.itemData}>
-                <Text style={styles.quantity}>{props.quantity}  </Text>
-                <Text style={styles.maintText}>{props.title}</Text>
+                <Text style={styles.quantity}>{props.quantity}</Text>
+                <View style={styles.textContainer}>
+                    <Text style={styles.maintText}>{props.title}</Text>
+                </View>
             </View>
             <View style={styles.itemData}>
                 <Text style={styles.maintText}>${props.amount.toFixed(2)}</Text>
@@ -50,6 +52,10 @@ const styles = StyleSheet.create({
         color: Colors.text,
         fontFamily: 'open-sans',
         fontSize: 16
+    },
+    textContainer: {
+        marginLeft: 15,
+        width: '50%'
     }
 });
 

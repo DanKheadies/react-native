@@ -1,9 +1,18 @@
 import React, { useEffect } from 'react';
 import { ActivityIndicator, AsyncStorage, StyleSheet, View } from 'react-native';
 import { useDispatch } from 'react-redux';
+import * as Notifications from 'expo-notifications';
 
 import * as authActions from '../../store/actions/Shop/auth';
 import Colors from '../../constants/ShopColors';
+
+Notifications.setNotificationHandler({
+    handleNotification: async () => {
+        return { 
+            shouldShowAlert: true
+        };
+    }
+});
 
 const ShopScreen = () => {
     const dispatch = useDispatch();

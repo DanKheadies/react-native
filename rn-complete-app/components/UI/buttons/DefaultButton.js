@@ -5,6 +5,7 @@ import DeviceColors from '../../../constants/DeviceColors';
 import GoalColors from '../../../constants/GoalColors';
 import GuessColors from '../../../constants/GuessColors';
 import NavigationColors from '../../../constants/NavigationColors';
+import NotificationsColors from '../../../constants/NotificationColors';
 import ShopColors from '../../../constants/ShopColors';
 
 const DefaultButton = props => {
@@ -15,6 +16,7 @@ const DefaultButton = props => {
                 props.color === 'goal' ? GoalColors.primary :
                 props.color === 'guess' ? GuessColors.primary : 
                 props.color === 'navigation' ? NavigationColors.primary : 
+                props.color === 'notifications' ? NotificationsColors.primary :
                 props.color === 'shop' ? ShopColors.primary :
                     'black'
             }

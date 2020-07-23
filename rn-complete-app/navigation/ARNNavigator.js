@@ -7,6 +7,7 @@ import { DeviceNavigator } from './DeviceNavigator';
 import { GoalNavigator } from './GoalNavigator';
 import { GuessNavigator } from './GuessNavigator';
 import { MealsDrawer } from './MealsNavigator';
+import { NotificationsNavigator } from './NotificationsNavigator';
 import { AuthNavigator, ShopDrawer } from './ShopNavigator';
 import ShopScreen from '../screens/Shop/ShopScreen';
 
@@ -25,6 +26,7 @@ const ARNNavigator = () => {
             {whichNavigator === 'shop' && !isAuth && didTryAutoLogin && <AuthNavigator />}
             {whichNavigator === 'shop' && !isAuth && !didTryAutoLogin && <ShopScreen />}
             {whichNavigator === 'device' && <DeviceNavigator />}
+            {whichNavigator === 'notifications' && <NotificationsNavigator />}
         </NavigationContainer>
     );
 };

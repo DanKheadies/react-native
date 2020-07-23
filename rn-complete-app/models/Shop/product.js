@@ -2,6 +2,7 @@ class Product {
     constructor(
         id, 
         ownerId, 
+        ownerPushToken,
         title, 
         imageUrl, 
         description, 
@@ -9,6 +10,7 @@ class Product {
     ) {
         this.id = id;
         this.ownerId = ownerId;
+        this.pushToken = ownerPushToken;
         this.title = title;
         this.imageUrl = imageUrl;
         this.description = description;

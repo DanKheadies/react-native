@@ -3,7 +3,7 @@
     "name": "ARN Complete App",
     "description": "An app showcasing the lessons and learning from Academind's React Native - The Practical Guide [2020 Edition] course with Maximilian Schwarzmuller via Udemy.com.",
     "slug": "arn-complete-app",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "orientation": "default",
     "icon": "./assets/places.png",
     "splash": {
@@ -19,7 +19,7 @@
     ],
     "android" : {
       "package": "com.holisticgaming.arn_complete_app",
-      "versionCode": 1,
+      "versionCode": 3,
       "adaptiveIcon": {
         "backgroundColor": "#171717",
         "foregroundImage": "./assets/places-adaptive.png"
@@ -37,7 +37,7 @@
     },
     "ios": {
       "bundleIdentifier": "com.holisticgaming.arn-complete-app",
-      "buildNumber": "1.0.0",
+      "buildNumber": "1.2.0",
       "infoPlist": {
         "NSCameraUsageDescription": "This app uses the camera to take a picture of your surroundings for the 'Device Feature's - Place' thumbnail.",
         "NSLocationWhenInUseUsageDescription": "This app uses your location to create a pin at your address for the 'Device Feature's - Place'.",

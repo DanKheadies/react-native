@@ -11,9 +11,6 @@ const HomeScreen = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.headerContainer}>
-                <DefaultText>Choose an App:</DefaultText>
-            </View>
             <View style={styles.buttons}>
                 <View style={styles.sectionContainer}>
                     <View style={styles.buttonContainer}>
@@ -85,13 +82,27 @@ const HomeScreen = () => {
                         Expo accessible native device features.
                     </DefaultText>
                 </View>
+                <View style={styles.sectionContainer}>
+                    <View style={styles.buttonContainer}>
+                        <DefaultButton
+                            color={'notifications'}
+                            onPress={() => {
+                                dispatch(appActions.selectNavigator('notifications'));
+                            }}
+                            title={'Notifications'}
+                        />
+                    </View>
+                    <DefaultText>
+                        Expo notifications via local and Expo's servers, i.e. push.
+                    </DefaultText>
+                </View>
             </View>
         </View>
     );
 };
 
 export const screenOptions = {
-    headerTitle: 'Academind Apps w/ Max'
+    headerTitle: 'Choose an App'
 };
 
 const styles = StyleSheet.create({
@@ -107,15 +118,12 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        marginBottom: 50
-    },
-    headerContainer: {
-        alignItems: 'center',
-        marginTop: 25
+        paddingBottom: 15,
+        paddingTop: 5
     },
     sectionContainer: {
-        marginVertical: 15,
-        paddingHorizontal: 35
+        paddingHorizontal: 35,
+        paddingVertical: 15
     }
 });
 
