@@ -39,7 +39,7 @@ export const fetchUser = () => {
     };
 };
 
-export const createUser = (email, permission, userId) => {
+export const createUser = (email, permission) => {
     return async (dispatch, getState) => {
         const token = getState().auth.token;
         const userId = getState().auth.userId;

@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import * as cartActions from '../../../store/actions/Shop/cart';
 import * as productsActions from '../../../store/actions/Shop/products';
-import * as usersActions from '../../../store/actions/Shop/users';
 import Colors from '../../../constants/ShopColors';
 import HeaderButton from '../../../components/UI/buttons/HeaderButton';
 import HeaderItem from '../../../components/UI/HeaderItem';

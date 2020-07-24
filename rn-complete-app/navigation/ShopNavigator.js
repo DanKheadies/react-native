@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Platform, SafeAreaView, View } from 'react-native';
 import { createDrawerNavigator, DrawerItemList } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 
 import * as appActions from '../store/actions/App/app';
@@ -96,6 +96,7 @@ const ShopDrawerNavigator = createDrawerNavigator();
 
 export const ShopDrawer = () => {
     const dispatch = useDispatch();
+    const thisUser = useSelector(state => state.user.thisUser);
 
     return (
         <ShopDrawerNavigator.Navigator 
@@ -122,7 +123,6 @@ export const ShopDrawer = () => {
                                     color={ShopColors.primary}
                                     onPress={() => {
                                         dispatch(authActions.logout());
-                                        // props.navigation.navigate('Auth');
                                     }}
                                     title="Logout"
                                 />
@@ -161,19 +161,21 @@ export const ShopDrawer = () => {
                     )
                 }}
             />
-            <ShopDrawerNavigator.Screen 
-                component={AdminNavigator}
-                name="Admin"
-                options={{
-                    drawerIcon: props => (
-                        <Ionicons 
-                            color={props.color}
-                            name={Platform.OS === 'android' ? 'md-create' : 'ios-create'} 
-                            size={23}
-                        />
-                    )
-                }}
-            />
+            {thisUser.length === 1 && thisUser[0].permission === 'editor' && 
+                <ShopDrawerNavigator.Screen 
+                    component={AdminNavigator}
+                    name="Admin"
+                    options={{
+                        drawerIcon: props => (
+                            <Ionicons 
+                                color={props.color}
+                                name={Platform.OS === 'android' ? 'md-create' : 'ios-create'} 
+                                size={23}
+                            />
+                        )
+                    }}
+                />
+            }
         </ShopDrawerNavigator.Navigator>
     );
 };
