@@ -13,3 +13,6 @@ app_PRIVATE.json
 
 # macOS
 .DS_Store
+
+# DC
+google-speech-to-text.json
