@@ -10,6 +10,7 @@ import { MealsDrawer } from './MealsNavigator';
 import { NotificationsNavigator } from './NotificationsNavigator';
 import { AuthNavigator, ShopDrawer } from './ShopNavigator';
 import ShopScreen from '../screens/Shop/ShopScreen';
+import { SpeechNavigator } from './SpeechNavigator';
 
 const ARNNavigator = () => {
     const didTryAutoLogin = useSelector(state => !!state.auth.didTryAutoLogin);
@@ -27,6 +28,7 @@ const ARNNavigator = () => {
             {whichNavigator === 'shop' && !isAuth && !didTryAutoLogin && <ShopScreen />}
             {whichNavigator === 'device' && <DeviceNavigator />}
             {whichNavigator === 'notifications' && <NotificationsNavigator />}
+            {whichNavigator === 'speech' && <SpeechNavigator />}
         </NavigationContainer>
     );
 };

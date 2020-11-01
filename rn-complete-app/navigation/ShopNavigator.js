@@ -6,10 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 
 import * as appActions from '../store/actions/App/app';
+import * as authActions from '../store/actions/Shop/auth';
 import { defaultNavOptions } from './MainNavigator';
 import DrawerItem from '../components/UI/buttons/DrawerItem';
 
-import * as authActions from '../store/actions/Shop/auth';
 import AuthScreen, { screenOptions as authScreenOptions } from '../screens/Shop/user/AuthScreen';
 import CartScreen, { screenOptions as cartScreenOptions } from '../screens/Shop/shop/CartScreen';
 import EditProductScreen, { screenOptions as editProductScreenOptions } from '../screens/Shop/user/EditProductScreen';

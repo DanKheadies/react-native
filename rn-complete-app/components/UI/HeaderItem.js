@@ -9,6 +9,7 @@ import GuessColors from '../../constants/GuessColors';
 import NavigationColors from '../../constants/NavigationColors';
 import NotificationColors from '../../constants/NotificationColors';
 import ShopColors from '../../constants/ShopColors';
+import SpeechColors from '../../constants/SpeechColors';
 
 const getColor = color => {
     return (
@@ -19,6 +20,7 @@ const getColor = color => {
             color === 'navigation' ? NavigationColors.primary : 
             color === 'notifications' ? NotificationColors.primary :
             color === 'shop' ? ShopColors.primary :
+            color === 'speech' ? SpeechColors.primary :
                 'black'
     );
 };

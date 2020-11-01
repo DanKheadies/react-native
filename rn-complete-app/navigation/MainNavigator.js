@@ -10,6 +10,7 @@ import GuessColors from '../constants/GuessColors';
 import NavigationColors from '../constants/NavigationColors';
 import NotificationsColors from '../constants/NotificationColors';
 import ShopColors from '../constants/ShopColors';
+import SpeechColors from '../constants/SpeechColors';
 
 const getColor = appStack => {
     return (
@@ -19,6 +20,7 @@ const getColor = appStack => {
         appStack === 'navigation' ? NavigationColors.primary :
         appStack === 'notifications' ? NotificationsColors.primary :
         appStack === 'shop' ? ShopColors.primary :
+        appStack === 'speech' ? SpeechColors.primary :
             'black'
     );
 };

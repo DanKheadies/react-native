@@ -180,7 +180,7 @@ const NotificationsScreen = () => {
     );
 }
 
-export const screenOptions = navData => {
+export const screenOptions = () => {
     const dispatch = useDispatch();
 
     return {

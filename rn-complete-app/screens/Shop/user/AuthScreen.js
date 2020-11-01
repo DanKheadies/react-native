@@ -92,7 +92,6 @@ const AuthScreen = props => {
             if (newUser) { 
                 await dispatch(newUser); 
             }
-            console.log('homo');
             await dispatch(usersActions.fetchUser());
         } catch (err) {
             setError(err.message);
