@@ -8,7 +8,7 @@ const SpeechStackNavigator = createStackNavigator();
 
 export const SpeechNavigator = () => {
     return (
-        <SpeechStackNavigator.Navigator screenOptions={defaultNavOptions('speech')}>
+        <SpeechStackNavigator.Navigator screenOptions={defaultNavOptions}>
             <SpeechStackNavigator.Screen 
                 component={SpeechScreen}
                 name='Speech'

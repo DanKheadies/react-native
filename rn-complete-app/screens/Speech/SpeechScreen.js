@@ -8,7 +8,6 @@ import * as Permissions from 'expo-permissions';
 import axios from 'axios';
 
 import * as appActions from '../../store/actions/App/app';
-import DefaultButton from '../../components/UI/buttons/DefaultButton';
 import DefaultText from '../../components/UI/DefaultText';
 import HeaderButton from '../../components/UI/buttons/HeaderButton';
 import HeaderItem from '../../components/UI/HeaderItem';
